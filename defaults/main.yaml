@@ -1,0 +1,16 @@
+---
+# Purpose: 
+# Created: 
+# Last Updated:
+# Ansible 
+# Notes: 
+
+host_vlan: 1
+proxmox_node: ""
+proxmox_api_user: ""
+proxmox_api_password: ""
+lxc_cpus: 
+lxc_disk: 
+lxc_memory: 
+lxc_storage_vol:
+lxc_template:

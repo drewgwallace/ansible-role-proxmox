@@ -1,0 +1,57 @@
+---
+# Purpose: This playbook is intended to configure the proxmox target with a new LXC ubuntu image
+# Created: 2018.04.29
+# Last Updated: 2018.06.10
+# Ansible: v2.5.2
+# Notes: proxmoxer required (pip install proxmoxer)
+#          which in turn requires the "requests" module (pip install requests)
+
+
+- name: "Create LXC with Proxmox"
+  local_action:
+    module: proxmox
+    # vmid: 110
+    node: "{{ proxmox_node }}"   
+    api_user: "{{ proxmox_api_user | default(\"root@pam\") }}"
+    api_password: "{{ proxmox_api_password }}"
+    api_host: "{{ proxmox_node }}" 
+    hostname: "{{ inventory_hostname }}"
+    password: "{{ root_password }}"
+    unprivileged: no
+    ostemplate: "{{ lxc_template }}"
+    netif:
+      net0: "name=eth0,bridge=vmbr0,gw={{ environment_gw }},ip={{ ansible_host }}{{ environment_subnet_cidr }},tag={{ host_vlan }},type=veth"
+    #cores: 1
+    cpus: "{{ lxc_cpus }}"
+    disk: "{{ lxc_disk }}"
+    memory: "{{ lxc_memory }}"
+    onboot: yes
+    state: "present"
+    storage: "{{ lxc_storage_vol }}"
+    pubkey: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  # with_items:
+    # - present
+    # - started
+  register: out
+
+# Pause the playbook to give proxmox some time to think...  
+- pause:
+    seconds: 10
+  when: out.changed
+
+- name: "Start LXC with Proxmox"
+  local_action:
+    module: proxmox
+    node: "{{ proxmox_node }}"   
+    api_user: "{{ proxmox_api_user | default(\"root@pam\") }}"
+    api_password: "{{ proxmox_api_password }}"
+    api_host: "{{ proxmox_node }}" 
+    hostname: "{{ inventory_hostname }}"
+    password: "{{ root_password }}"
+    state: "started"
+  register: out
+
+# Pause the playbook to allow lxc container to boot
+- pause:
+    seconds: 10
+  when: out.changed
