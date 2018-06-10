@@ -1,16 +1,16 @@
 ---
-# Purpose: 
-# Created: 
-# Last Updated:
-# Ansible 
+# Purpose: Default variables for ProxMox
+# Created: 2018.04.29
+# Last Updated: 2018.06.10
+# Ansible: v2.5.2
 # Notes: 
 
 host_vlan: 1
-proxmox_node: ""
-proxmox_api_user: ""
-proxmox_api_password: ""
-lxc_cpus: 
-lxc_disk: 
-lxc_memory: 
-lxc_storage_vol:
-lxc_template:
+proxmox_node: "pve"
+proxmox_api_user: "root@pam"
+proxmox_api_password: "12345"
+lxc_cpus: 1
+lxc_disk: 8
+lxc_memory: 1024 
+lxc_storage_vol: pve01-sda-thin
+lxc_template: local:vztmpl/ubuntu-16.04-standard_16.04-1_amd64.tar.gz
