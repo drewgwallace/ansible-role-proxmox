@@ -1,7 +1,6 @@
 ---
 # Purpose: This playbook is intended to configure the proxmox target with a new LXC ubuntu image
-# Created: 2018.04.29
-# Last Updated: 2018.06.10
+# Last Updated: 2018.06.11
 # Ansible: v2.5.2
 # Notes: proxmoxer required (pip install proxmoxer)
 #          which in turn requires the "requests" module (pip install requests)
