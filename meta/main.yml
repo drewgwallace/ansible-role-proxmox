@@ -21,5 +21,6 @@ galaxy_info:
       - all
   galaxy_tags:
     - system
-    - automatic-updates
-    - apt
+    - virtualization
+    - proxmox
+    - containers
