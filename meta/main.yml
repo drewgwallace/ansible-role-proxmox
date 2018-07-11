@@ -1,15 +1,14 @@
 ---
-# Purpose: Meta file for Ansible Galaxy
-# Last Updated: 2018.06.11
-# Notes: 
-
-
 dependencies: []
 
 galaxy_info:
   author: drewgwallace
-  description: Deploy proxmox LXC servers.
-  company: 
+  description: Deploy proxmox LXC servers
+  galaxy_tags:
+    - system
+    - virtualization
+    - proxmox
+    - containers
   license: MIT
   min_ansible_version: 2.4
   platforms:
@@ -19,8 +18,3 @@ galaxy_info:
     - name: Ubuntu
       versions:
       - all
-  galaxy_tags:
-    - system
-    - virtualization
-    - proxmox
-    - containers
