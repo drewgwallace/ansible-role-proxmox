@@ -3,7 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: drewgwallace
-  description: Deploy proxmox LXC servers
+  description: Deploy proxmox LXC servers.
   galaxy_tags:
     - system
     - virtualization
